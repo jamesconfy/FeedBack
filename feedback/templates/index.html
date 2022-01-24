@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <td scope="col" class="hideid">#</td>
+                <td scope="col">Name</td>
+                <td scope="col" class="hideid">Email</td>
+                <td scope="col">Dealer</td>
+                <td scope="col">FeedBack</td>
+            </tr>
+        </thead>
+
+        {% for feed in feeds %}
+        {% if feed %}
+        <tbody>
+            <tr>
+                <td scope="row" class="hideid">{{ feed.id }}</td>
+                <td>{{ feed.name }}</td>
+                <td class="hideid">{{ feed.email }}</td>
+                <td>{{ feed.dealer }}</td>
+                <td>{{ feed.feedback }}</td>
+            </tr>
+        </tbody>
+        {% else %}
+        <tbody>
+            <tr>
+                <td scope="row">NO FEEDBACK FROM CONSUMERS</td>
+            </tr>
+        </tbody>
+        {% endif %}
+        {% endfor %}
+    </table>
+</div>
+
+
+{% endblock %}

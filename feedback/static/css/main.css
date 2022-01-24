@@ -1,0 +1,147 @@
+h1, h2, h3, h4, h5, h6 {
+	color: white;
+}
+
+button.mybtn {
+	display: inline-flex;
+	margin: auto;
+	text-align: center;
+}
+
+div.nav-right {
+	display: flex;
+	justify-content: right;
+}
+
+div.mynav {
+	background-color: #00264d;
+}
+
+div.mynav h4 {
+	color: lightblue;
+}
+
+div.mynav p {
+	color: white;
+}
+
+.portf {
+	font-size: 30px;
+}
+
+a:hover {
+	color: #00ff80;
+}
+
+div.mynav a {
+	color: white;
+}
+
+div.mynav a:hover {
+	color: #00ff80;
+}
+
+section {
+	display: block;
+	margin: auto;
+}
+
+.first_section {
+	text-align: center;
+}
+
+div.mynav section p {
+	font-size: 40px;
+}
+
+.p-5 {
+	padding: 0.5rem 5rem 4rem !important;
+}
+
+.m-5 {
+	margin: 1.2rem 5rem 5rem !important;
+}
+
+.mtb-7 {
+	margin-top: 5rem !important;
+	margin-bottom: 5rem !important;
+}
+
+.shadow1 {
+	display: block;
+	margin: auto;
+	text-align: center;
+	box-shadow: -12px -10px 12px 6px #ffe066 inset;
+}
+
+.talk {
+	background-color: aquamarine;
+}
+
+section h4 {
+	color: black;
+}
+
+.foo {
+	display: block;
+	text-align: center;
+}
+
+.foo ul {
+	list-style: none;
+	display: inline-flex;
+}
+
+.foo ul li {
+    margin: 0px 3px;
+}
+
+li a.contacts {
+	font-size: 30px;
+}
+
+.img {
+	width: 90px;
+	height: 60px;
+	padding: 10px;
+}
+
+@media screen and (max-width: 720px) and (min-width: 480px) {
+	.p-5 {
+		padding: 1rem !important;
+	}
+
+	div.mynav section p {
+		font-size: 25px;
+	}
+
+	.mtb-7 {
+		margin-top: 1rem !important;
+		margin-bottom: 1rem !important;
+	}
+
+	.foo {
+		display: block;
+		text-align: center;
+	}	
+
+	.foo ul {
+		display: inline-flex;
+		list-style: none;
+	}
+
+	.foo ul li {
+		margin: 0px 1px;
+	}
+
+	.img {
+		width: 50px;
+		height: 50px;
+		padding: 10px;
+	}
+
+	.hideid {
+		display: none;
+	}
+	
+}
