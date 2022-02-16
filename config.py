@@ -18,5 +18,5 @@ class Config(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/feedback'
 
-class ProdConfig(Config):
-    DATABASE_URI = f''
+#class ProdConfig(Config):
+ #   DATABASE_URI = f''
