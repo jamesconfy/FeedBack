@@ -3,9 +3,10 @@ from dotenv import load_dotenv
 
 load_dotenv(".env")
 
-DB_HOST = os.environ.get('DB_HOST')
-DB_USER = os.environ.get('DB_USER')
-DB_PASS = os.environ.get('DB_PASS')
+DB_HOST = os.environ.get('MYSQL_HOST')
+DB_USER = os.environ.get('MYSQL_USER')
+DB_PASS = os.environ.get('MYSQL_PASS')
+DB_NAME = os.environ.get('MYSQL_NAME')
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY')
@@ -16,7 +17,7 @@ class Config(object):
     MAIL_USE_TLS = True
     MAIL_USE_SSL = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/feedback'
+    SQLALCHEMY_DATABASE_URI = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}'
 
 #class ProdConfig(Config):
  #   DATABASE_URI = f''
