@@ -1,5 +1,6 @@
 from flask import render_template, redirect, url_for, request, flash
-from feedback import app, db
+from feedback import db
+from flask import current_app as app
 from feedback.forms import FeedBack
 from feedback.models import FeedBackModel
 from feedback.utils import send_mail

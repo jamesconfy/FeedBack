@@ -1,6 +1,7 @@
 from feedback import db
 
 class FeedBackModel(db.Model):
+    __tablename__ = "feed_back_model"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), nullable=False)
     email = db.Column(db.String(200), nullable=False)

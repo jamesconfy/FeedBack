@@ -1,12 +1,19 @@
 from flask import Flask
-from config import Config
+from config import ProdConfig
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.config.from_object(Config)
+mail = Mail()
+db = SQLAlchemy()
 
-mail = Mail(app)
-db = SQLAlchemy(app)
+def create_app():
+    app = Flask("feedback")
+    app.config.from_object(ProdConfig)
+    db.init_app(app)
+    mail.init_app(app)
 
-from feedback import routes
+    with app.app_context():
+        from feedback import routes
+        db.create_all()
+
+    return app

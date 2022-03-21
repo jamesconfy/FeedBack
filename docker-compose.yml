@@ -7,5 +7,32 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
+    networks:
+      - mysqlnet
     ports:
       - 5002:5002
+    volumes:
+      - ./:/app
+
+  mysqldb:
+    container_name: mysqldb
+    image: mysqldb
+    environment:
+      MYSQL_ROOT_PASSWORD: arsenalb2
+      MYSQL_DATABASE: feedback-app
+      MYSQL_USER: feedback-user
+      MYSQL_PASSWORD: feedback-user-password
+    ports:
+      - 3308:3306
+    networks:
+      - mysqlnet
+    volumes:
+      - mysql:/var/lib/mysql
+      - mysql_config:/etc/mysql
+
+volumes:
+  mysql:
+  mysql_config:
+
+networks:
+  mysqlnet:
