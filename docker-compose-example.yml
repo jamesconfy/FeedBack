@@ -18,10 +18,10 @@ services:
     container_name: mysqldb
     image: mysqldb
     environment:
-      MYSQL_ROOT_PASSWORD: arsenalb2
-      MYSQL_DATABASE: feedback-app
-      MYSQL_USER: feedback-user
-      MYSQL_PASSWORD: feedback-user-password
+      MYSQL_ROOT_PASSWORD: ####
+      MYSQL_DATABASE: ####
+      MYSQL_USER: ####
+      MYSQL_PASSWORD: ####
     ports:
       - 3308:3306
     networks:
