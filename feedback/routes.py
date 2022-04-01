@@ -1,7 +1,8 @@
+from sys import prefix
 from flask import render_template, redirect, url_for, request, flash
 from feedback import db
 from flask import current_app as app
-from feedback.forms import FeedBack
+from feedback.forms import FeedBackForm
 from feedback.models import FeedBackModel
 from feedback.utils import send_mail
 
@@ -13,7 +14,7 @@ def home():
 
 @app.route('/feedback', methods=["POST", "GET"])
 def feedback():
-    form = FeedBack()
+    form = FeedBackForm()
     if request.method == "POST":
         if form.validate_on_submit():
             if form.dealer.data == 'None':
@@ -21,11 +22,12 @@ def feedback():
             else:
                 dealer_data = form.dealer.data
             feed = FeedBackModel(name=form.name.data, email=form.email.data, dealer=dealer_data, feedback=form.feedback.data)
-            send_mail(name=form.name.data, email=form.email.data, dealer=dealer_data, feedback=form.feedback.data)
-            db.session.add(feed)
+            db.session.add(feed) 
             db.session.commit()
             flash('Correct Guy', 'success')
+            send_mail(name=form.name.data, email=form.email.data, dealer=dealer_data, feedback=form.feedback.data)
             return redirect(url_for('home'))
+    #else:
     return render_template('feedback.html', title='Feed Back', form=form)
 
 @app.route('/search', methods=["POST", "GET"])
@@ -34,8 +36,3 @@ def search():
         name = f'{request.form["search"]}'
         feed = FeedBackModel.query.filter(FeedBackModel.name.contains(name)).all()
         return render_template('index.html', title='Searched Result', feeds=feed)
-
-
-
-if __name__ == '__main__':
-   app.run(debug = True)

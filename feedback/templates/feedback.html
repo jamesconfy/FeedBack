@@ -3,12 +3,22 @@
 {% block content %}
 <div class="container">
     <img src="{{ url_for('static', filename='assets/logo.jpeg') }}" alt="Top Logo" class="m-4">
-    <form action="" method="POST" class="form-group">
+    <form action="{{ url_for('feedback') }}" method="POST" class="form-group">
         {{ form.csrf_token() }}
         <fieldset>
             <div class="form-group fieldset">
                 {{ form.name.label(class="form-control-label") }}
+                {% if form.name.errors %}
+                {{ form.name(class="form-control is-invalid myInput", value=form.name.data) }}
+                <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                    <span> {{ error }}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
                 {{ form.name(class="form-control myInput") }}
+                {% endif %}
+                
             </div>
             <div class="form-group fieldset">
                 {{ form.email.label(class="form-control-label") }}

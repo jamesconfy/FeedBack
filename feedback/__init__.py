@@ -1,5 +1,5 @@
 from flask import Flask
-from config import ProdConfig
+from config import DevConfig
 from flask_mail import Mail
 from flask_sqlalchemy import SQLAlchemy
 
@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 def create_app():
     app = Flask("feedback")
-    app.config.from_object(ProdConfig)
+    app.config.from_object(DevConfig)
     db.init_app(app)
     mail.init_app(app)
 
