@@ -6,11 +6,13 @@ from feedback.forms import FeedBackForm
 from feedback.models import FeedBackModel
 from feedback.utils import send_mail
 
+
 @app.route('/')
 @app.route('/home')
 def home():
     feed = FeedBackModel.query.all()
     return render_template('index.html', title='Dashboard', feeds=feed)
+
 
 @app.route('/feedback', methods=["POST", "GET"])
 def feedback():
@@ -21,18 +23,24 @@ def feedback():
                 dealer_data = ' '
             else:
                 dealer_data = form.dealer.data
-            feed = FeedBackModel(name=form.name.data, email=form.email.data, dealer=dealer_data, feedback=form.feedback.data)
-            db.session.add(feed) 
+            feed = FeedBackModel(name=form.name.data,
+                                 email=form.email.data,
+                                 dealer=dealer_data,
+                                 feedback=form.feedback.data)
+            db.session.add(feed)
             db.session.commit()
             flash('Correct Guy', 'success')
-            send_mail(name=form.name.data, email=form.email.data, dealer=dealer_data, feedback=form.feedback.data)
+            send_mail(name=form.name.data,
+                      email=form.email.data,
+                      dealer=dealer_data,
+                      feedback=form.feedback.data)
             return redirect(url_for('home'))
     #else:
     return render_template('feedback.html', title='Feed Back', form=form)
 
-@app.route('/search', methods=["POST", "GET"])
+
+@app.route('/search')
 def search():
-    if request.method == "POST":
-        name = f'{request.form["search"]}'
-        feed = FeedBackModel.query.filter(FeedBackModel.name.contains(name)).all()
-        return render_template('index.html', title='Searched Result', feeds=feed)
+    name = f"{request.args.get('name')}"
+    feed = FeedBackModel.query.filter(FeedBackModel.name.contains(name)).all()
+    return render_template('index.html', title='Searched Result', feeds=feed)
